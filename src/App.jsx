@@ -204,9 +204,12 @@ const PremiumPortfolio = () => {
               View Projects
               <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
             </button>
-            <button className="px-8 py-4 border border-white/20 rounded-full font-semibold hover:bg-white/5 transition-all duration-300">
-              Download CV
-            </button>
+            <a href="/Mishael_Balogun_CV.pdf" download>
+  <button className="px-8 py-4 border border-white/20 rounded-full font-semibold hover:bg-white/5 transition-all duration-300">
+    Download CV
+  </button>
+</a>
+
           </div>
 
           {/* Social Links */}
