@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mishael Balogun - CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #0a0a0a;
+      --paper: #ffffff;
+      --accent: #c8f241;
+      --accent-dim: #9dc41a;
+      --muted: #666;
+      --syne: 'Syne', sans-serif;
+      --dm: 'DM Sans', sans-serif;
+    }
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .page-break { page-break-before: always; }
+    }
+    body {
+      font-family: var(--dm);
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--ink);
+      background: var(--paper);
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--ink);
+    }
+    .header-left h1 {
+      font-family: var(--syne);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .header-left .title {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .header-right {
+      text-align: right;
+      font-size: 10px;
+      color: var(--muted);
+    }
+    .header-right a {
+      color: var(--ink);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 2px;
+    }
+    h2 {
+      font-family: var(--syne);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #eee;
+    }
+    .section { margin-bottom: 25px; }
+    .summary {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .summary strong { color: var(--ink); }
+    .experience-item {
+      margin-bottom: 18px;
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+    .exp-role {
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .exp-company {
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .exp-period {
+      font-size: 10px;
+      color: var(--muted);
+    }
+    .exp-current {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--ink);
+      font-size: 8px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 8px;
+      text-transform: uppercase;
+    }
+    .exp-bullets {
+      list-style: none;
+      margin-top: 6px;
+    }
+    .exp-bullets li {
+      font-size: 10px;
+      color: var(--muted);
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 2px;
+    }
+    .exp-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent-dim);
+      font-size: 9px;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+    .skill-group h3 {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+    .skill-list {
+      font-size: 10px;
+      color: var(--muted);
+    }
+    .project-item {
+      margin-bottom: 12px;
+    }
+    .project-name {
+      font-weight: 700;
+      font-size: 11px;
+      margin-bottom: 2px;
+    }
+    .project-desc {
+      font-size: 10px;
+      color: var(--muted);
+    }
+    .project-tags {
+      font-size: 9px;
+      color: var(--accent-dim);
+      margin-top: 2px;
+    }
+    .education-item {
+      margin-bottom: 10px;
+    }
+    .edu-title {
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .edu-sub {
+      font-size: 10px;
+      color: var(--muted);
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    @media print {
+      body { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <h1>Mishael Balogun</h1>
+      <div class="title">Frontend Developer & Builder</div>
+    </div>
+    <div class="header-right">
+      <a href="mailto:mishaelbalogun@gmail.com">mishaelbalogun@gmail.com</a>
+      <a href="https://github.com">github.com/mishael</a>
+      <a href="https://linkedin.com">linkedin.com/in/mishael-balogun</a>
+      <span>Lagos, Nigeria</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>Summary</h2>
+    <p class="summary">
+      Frontend developer and product builder based in <strong>Lagos, Nigeria</strong>. I specialize in turning ideas into real, shippable products — from TikTok-style consumer apps to blockchain infrastructure. I care deeply about <strong>clean code, fast interfaces, and experiences that feel good to use</strong>. Currently building at Lilyshop while completing my B.Sc. Computer Science at Lagos State University (Expected 2026).
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Experience</h2>
+
+    <div class="experience-item">
+      <div class="exp-header">
+        <div>
+          <span class="exp-role">Frontend Developer</span>
+          <span class="exp-current">Current</span>
+        </div>
+        <span class="exp-period">Apr 2025 — Present</span>
+      </div>
+      <div class="exp-company">Makarios Tech · Remote</div>
+      <ul class="exp-bullets">
+        <li>Built and shipped product interfaces from design to deployment using React.js and Tailwind CSS</li>
+        <li>Collaborated with product and backend teams in a remote-first workflow, meeting sprint deadlines consistently</li>
+        <li>Implemented responsive, accessible UI components following modern web standards</li>
+        <li>Integrated RESTful APIs to connect frontend views with live data and dynamic content</li>
+      </ul>
+    </div>
+
+    <div class="experience-item">
+      <div class="exp-header">
+        <div>
+          <span class="exp-role">Frontend Developer</span>
+          <span class="exp-current">Current</span>
+        </div>
+        <span class="exp-period">Jul 2025 — Present</span>
+      </div>
+      <div class="exp-company">Lilyshop · Remote</div>
+      <ul class="exp-bullets">
+        <li>Led frontend development on Lilyshop, a TikTok-style vertical-scroll food ordering app with in-feed ordering</li>
+        <li>Designed and built the full in-feed product discovery UI, delivering a swipe-native consumer experience</li>
+        <li>Optimised component render performance for smooth scroll interactions on mobile-first consumers</li>
+        <li>Worked cross-functionally to translate product vision into shipped, user-facing features</li>
+      </ul>
+    </div>
+
+    <div class="experience-item">
+      <div class="exp-header">
+        <span class="exp-role">Frontend Developer</span>
+        <span class="exp-period">Prior</span>
+      </div>
+      <div class="exp-company">Inspirem Media Network</div>
+      <ul class="exp-bullets">
+        <li>Developed and maintained web interfaces for a media network, ensuring consistent visual standards</li>
+        <li>Built reusable component libraries that reduced development time across multiple internal properties</li>
+        <li>Translated brand and design guidelines into pixel-accurate, responsive frontend implementations</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="two-col">
+    <section class="section">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Frontend</h3>
+          <div class="skill-list">React.js, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Bootstrap, Styled-Components</div>
+        </div>
+        <div class="skill-group">
+          <h3>APIs & Integration</h3>
+          <div class="skill-list">REST APIs, API Integration, Supabase, Firebase</div>
+        </div>
+        <div class="skill-group">
+          <h3>Tools</h3>
+          <div class="skill-list">Git / GitHub, Figma, Vercel, Netlify, Responsive Design</div>
+        </div>
+        <div class="skill-group">
+          <h3>Design</h3>
+          <div class="skill-list">UI/UX Design, Product Design, Design Systems</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Education</h2>
+      <div class="education-item">
+        <div class="edu-title">B.Sc. Computer Science</div>
+        <div class="edu-sub">Lagos State University (LASU) · Epe Campus · Expected 2026</div>
+      </div>
+    </section>
+  </div>
+
+  <section class="section">
+    <h2>Projects</h2>
+    <div class="two-col">
+      <div>
+        <div class="project-item">
+          <div class="project-name">Lilyshop</div>
+          <div class="project-desc">TikTok-style food ordering app with in-feed ordering, zero friction from discovery to checkout.</div>
+          <div class="project-tags">React.js · Tailwind CSS · REST API · Mobile-first</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">SabiPass</div>
+          <div class="project-desc">AI-powered education platform for JAMB, WAEC, Post-UTME prep with intelligent study assistant.</div>
+          <div class="project-tags">React · AI Integration · Supabase</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">Zunto</div>
+          <div class="project-desc">Global marketplace — architecture design and product strategy for cross-border commerce.</div>
+          <div class="project-tags">Product Design · Architecture · React</div>
+        </div>
+      </div>
+      <div>
+        <div class="project-item">
+          <div class="project-name">Balcoin</div>
+          <div class="project-desc">Custom Layer-1 Proof-of-Work blockchain built from first principles.</div>
+          <div class="project-tags">Blockchain · PoW · JavaScript</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">$BINGO</div>
+          <div class="project-desc">Solana memecoin with native Telegram Web App integration.</div>
+          <div class="project-tags">Solana · Telegram TWA · Web3</div>
+        </div>
+        <div class="project-item">
+          <div class="project-name">Photographer Booking Platform</div>
+          <div class="project-desc">End-to-end booking platform with full UX design through backend integration.</div>
+          <div class="project-tags">React · UX Design · REST API</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
