@@ -1,434 +1,319 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, Github, Linkedin, Mail, ExternalLink, ChevronDown, Code, Palette, Zap, Users } from 'lucide-react';
+import { useEffect } from 'react';
 
-const PremiumPortfolio = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-  const [scrollY, setScrollY] = useState(0);
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+const projects = [
+  {
+    icon: '🛒',
+    name: 'Lilyshop',
+    desc: 'TikTok-style food ordering app where users scroll a vertical feed and order meals in-feed — zero friction from discovery to checkout.',
+    tags: ['React.js', 'Tailwind CSS', 'REST API', 'Mobile-first'],
+    featured: true
+  },
+  {
+    icon: '🎓',
+    name: 'SabiPass',
+    desc: 'AI-powered education platform for Nigerian students — JAMB, WAEC, Post-UTME prep with an intelligent study assistant.',
+    tags: ['React', 'AI Integration', 'Supabase']
+  },
+  {
+    icon: '📸',
+    name: 'Photographer Booking Platform',
+    desc: 'End-to-end booking platform — full UX design through backend integration, enabling photographers to list, book, and manage sessions.',
+    tags: ['React', 'UX Design', 'REST API']
+  },
+  {
+    icon: '🌐',
+    name: 'Zunto',
+    desc: 'Global marketplace — architecture design and product strategy for a cross-border commerce platform built for scale.',
+    tags: ['Product Design', 'Architecture', 'React']
+  },
+  {
+    icon: '⛓️',
+    name: 'Balcoin',
+    desc: 'Custom Layer-1 Proof-of-Work blockchain — built from first principles, including consensus mechanism, transaction validation, and chain state.',
+    tags: ['Blockchain', 'PoW', 'JavaScript']
+  },
+  {
+    icon: '🪙',
+    name: '$BINGO',
+    desc: 'Solana memecoin with a native Telegram Web App integration — enabling in-chat token interaction and community engagement at launch.',
+    tags: ['Solana', 'Telegram TWA', 'Web3']
+  }
+];
 
+const experiences = [
+  {
+    period: 'Apr 2025 — Present',
+    current: true,
+    role: 'Frontend Developer',
+    company: 'Makarios Tech · Remote',
+    bullets: [
+      'Built and shipped product interfaces from design to deployment using React.js and Tailwind CSS',
+      'Collaborated with product and backend teams in a remote-first workflow, meeting sprint deadlines consistently',
+      'Implemented responsive, accessible UI components following modern web standards',
+      'Integrated RESTful APIs to connect frontend views with live data and dynamic content'
+    ],
+    tag: 'React · Tailwind'
+  },
+  {
+    period: 'Jul 2025 — Present',
+    current: true,
+    role: 'Frontend Developer',
+    company: 'Lilyshop · Remote',
+    bullets: [
+      'Led frontend development on Lilyshop, a TikTok-style vertical-scroll food ordering app with in-feed ordering',
+      'Designed and built the full in-feed product discovery UI, delivering a swipe-native consumer experience',
+      'Optimised component render performance for smooth scroll interactions on mobile-first consumers',
+      'Worked cross-functionally to translate product vision into shipped, user-facing features'
+    ],
+    tag: 'React · UX'
+  },
+  {
+    period: 'Prior',
+    current: false,
+    role: 'Frontend Developer',
+    company: 'Inspirem Media Network',
+    bullets: [
+      'Developed and maintained web interfaces for a media network, ensuring consistent visual standards',
+      'Built reusable component libraries that reduced development time across multiple internal properties',
+      'Translated brand and design guidelines into pixel-accurate, responsive frontend implementations'
+    ],
+    tag: 'HTML · CSS · JS'
+  }
+];
+
+const skills = {
+  frontend: ['React.js', 'JavaScript (ES6+)', 'HTML5', 'CSS3', 'Tailwind CSS', 'Bootstrap', 'Styled-Components'],
+  api: ['REST APIs', 'API Integration', 'Supabase', 'Firebase'],
+  tools: ['Git / GitHub', 'Responsive Design', 'Figma', 'Vercel', 'Netlify'],
+  design: ['UI/UX Design', 'Product Design', 'Design Systems']
+};
+
+function App() {
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    const handleMouseMove = (e) => setCursorPosition({ x: e.clientX, y: e.clientY });
+    const cursor = document.getElementById('cursor');
+    if (!cursor) return;
     
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
-    
+    const handleMouseMove = (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    };
+
+    const handleMouseEnter = () => cursor.classList.add('expand');
+    const handleMouseLeave = () => cursor.classList.remove('expand');
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.querySelectorAll('a, button, .skill-pill, .project-card').forEach(el => {
+      el.addEventListener('mouseenter', handleMouseEnter);
+      el.addEventListener('mouseleave', handleMouseLeave);
+    });
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 60);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
-  const projects = [
-    {
-      id: 1,
-      title: "Zunto Marketplace",
-      category: "E-Commerce Platform",
-      description: "Building a full-scale e-commerce marketplace connecting buyers and sellers with seamless transactions and modern UI",
-      status: "In Development",
-      tags: ["React", "Node.js", "MongoDB", "Tailwind CSS"],
-      gradient: "from-purple-600 to-blue-600",
-      role: "Founder & Lead Developer"
-    },
-    {
-      id: 2,
-      title: "Photographer Booking Platform",
-      category: "Service Booking System",
-      description: "Intuitive booking system for photographers with portfolio showcase, scheduling, and payment integration",
-      tags: ["React.js", "JavaScript", "Tailwind CSS", "API Integration"],
-      gradient: "from-emerald-600 to-teal-600"
-    },
-    {
-      id: 3,
-      title: "Online Banking Demo",
-      category: "FinTech Application",
-      description: "Modern banking interface demonstrating secure transactions, account management, and financial analytics",
-      tags: ["React", "JavaScript", "CSS3", "Responsive Design"],
-      gradient: "from-orange-600 to-red-600"
-    },
-    {
-      id: 4,
-      title: "Fashion Store",
-      category: "E-Commerce",
-      description: "Elegant fashion e-commerce platform with advanced filtering, wishlist features, and smooth checkout experience",
-      tags: ["React.js", "Tailwind CSS", "JavaScript", "UI/UX"],
-      gradient: "from-pink-600 to-purple-600"
-    },
-    {
-      id: 5,
-      title: "Digital Agency Website",
-      category: "Corporate Web Design",
-      description: "Professional agency website showcasing services, portfolio, and client testimonials with modern aesthetics",
-      tags: ["HTML5", "CSS3", "JavaScript", "Responsive"],
-      gradient: "from-blue-600 to-indigo-600"
-    },
-    {
-      id: 6,
-      title: "Online Sports Store",
-      category: "E-Commerce Platform",
-      description: "Dynamic sports equipment store with product catalogs, shopping cart, and seamless user experience",
-      tags: ["React", "Tailwind CSS", "JavaScript", "E-Commerce"],
-      gradient: "from-green-600 to-emerald-600"
-    }
-  ];
-
-  const skills = [
-    { name: "HTML & CSS", level: 90, icon: Code },
-    { name: "JavaScript (ES6+)", level: 60, icon: Zap },
-    { name: "React.js", level: 75, icon: Code },
-    { name: "Tailwind CSS", level: 92, icon: Palette },
-    { name: "Node.js", level: 55, icon: Code },
-    { name: "MERN Stack", level: 40, icon: Code }
-  ];
-
-  const experiences = [
-    {
-      title: "Computer Science Student",
-      organization: "Lagos State University",
-      period: "2021 - Present",
-      description: "Pursuing a 5-year part-time Computer Science degree while actively building real-world projects and expanding technical expertise"
-    },
-    {
-      title: "Founder & Lead Developer",
-      organization: "Zunto Marketplace",
-      period: "2024 - Present",
-      description: "Building and leading development of a comprehensive e-commerce marketplace from concept to deployment"
-    },
-     {
-      title: "Frontend Developer",
-      organization: "InspireMe Media Network",
-      period: "January 2025 - Present",
-      description: "Building and learning  the development of a creative web interface from a very Great Mind."
-    }
-  ];
-
   return (
-    <div className="bg-black text-white min-h-screen overflow-x-hidden">
-      {/* Custom Cursor Effect */}
-      <div 
-        className="fixed w-8 h-8 border-2 border-purple-500 rounded-full pointer-events-none z-50 mix-blend-difference transition-transform duration-150"
-        style={{ 
-          left: `${cursorPosition.x}px`, 
-          top: `${cursorPosition.y}px`,
-          transform: 'translate(-50%, -50%)'
-        }}
-      />
+    <>
+      <div className="cursor" id="cursor"></div>
 
-      {/* Navigation */}
-      <nav className={`fixed w-full z-40 transition-all duration-300 ${scrollY > 50 ? 'bg-black/80 backdrop-blur-lg' : ''}`}>
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-            MB.DEV
-          </div>
-          
-          {/* Desktop Menu */}
-          <div className="hidden md:flex gap-8">
-            {['Work', 'About', 'Skills', 'Contact'].map((item) => (
-              <a 
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-gray-300 hover:text-white transition-colors relative group"
-              >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 group-hover:w-full transition-all duration-300"></span>
-              </a>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button 
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-black/95 backdrop-blur-lg">
-            {['Work', 'About', 'Skills', 'Contact'].map((item) => (
-              <a 
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="block px-6 py-4 text-gray-300 hover:text-white hover:bg-white/5"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-        )}
+      <nav>
+        <a href="#" className="nav-logo">MB.</a>
+        <ul className="nav-links">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="/Mishael_Balogun_CV.pdf" className="btn btn-primary" style={{fontSize:'12px', padding:'10px 20px'}} download>Download CV</a>
       </nav>
 
-      {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-        {/* Animated Background Grid */}
-        <div className="absolute inset-0 opacity-20">
-          {[...Array(20)].map((_, i) => (
-            <div 
-              key={i}
-              className="absolute h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"
-              style={{
-                top: `${i * 5}%`,
-                width: '100%'
-              }}
-            />
+      <section className="hero" id="home" style={{paddingTop:'80px', paddingBottom:'0'}}>
+        <div className="hero-left fade-up">
+          <div className="hero-badge">Available for opportunities</div>
+          <h1>
+            Frontend<br/>
+            <span className="accent-text">Engineer</span><br/>
+            & Builder
+          </h1>
+          <p className="hero-sub">
+            I build products people actually use — from TikTok-style food apps to blockchain implementations. Based in Lagos, Nigeria, shipping remotely for the world.
+          </p>
+          <div className="hero-cta">
+            <a href="#projects" className="btn btn-primary">View Projects <span>↓</span></a>
+            <a href="#contact" className="btn btn-outline">Get in Touch</a>
+          </div>
+        </div>
+        <div className="hero-right fade-up" style={{transitionDelay:'0.15s'}}>
+          <div className="hero-stats">
+            <div className="hero-stat">
+              <div className="num">6<span>+</span></div>
+              <div className="label">Live Products</div>
+            </div>
+            <div className="hero-stat">
+              <div className="num">2<span>+</span></div>
+              <div className="label">Years Building</div>
+            </div>
+            <div className="hero-stat">
+              <div className="num">3<span>+</span></div>
+              <div className="label">Companies</div>
+            </div>
+            <div className="hero-stat">
+              <div className="num">∞</div>
+              <div className="label">Lines Shipped</div>
+            </div>
+          </div>
+          <div className="hero-stack-label">Core Stack</div>
+          <div className="tech-tags">
+            <span className="tech-tag highlight">React.js</span>
+            <span className="tech-tag highlight">Tailwind CSS</span>
+            <span className="tech-tag">JavaScript</span>
+            <span className="tech-tag">HTML / CSS</span>
+            <span className="tech-tag">REST APIs</span>
+            <span className="tech-tag">Git / GitHub</span>
+            <span className="tech-tag">UI/UX</span>
+            <span className="tech-tag">Bootstrap</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="work" id="work">
+        <div className="section-label">Experience</div>
+        <h2>Where I've Worked</h2>
+        <div className="exp-list">
+          {experiences.map((exp, i) => (
+            <div className="exp-item fade-up" key={i}>
+              <div className="exp-period">{exp.period}</div>
+              <div>
+                {exp.current && <div className="exp-current">● Current</div>}
+                <div className="exp-role">{exp.role}</div>
+                <div className="exp-company">{exp.company}</div>
+                <ul className="exp-bullets">
+                  {exp.bullets.map((b, j) => <li key={j}>{b}</li>)}
+                </ul>
+              </div>
+              <span className="exp-tag">{exp.tag}</span>
+            </div>
           ))}
         </div>
+      </section>
 
-        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-          <div className="mb-6">
-            <span className="inline-block px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-purple-400 text-sm">
-              Open to Opportunities
-            </span>
-          </div>
-          
-          <h1 className="text-5xl md:text-8xl font-bold mb-6 leading-tight">
-            Mishael Balogun
-          </h1>
-          
-          <h2 className="text-3xl md:text-5xl font-semibold mb-8">
-            <span className="bg-gradient-to-r from-purple-500 via-blue-500 to-teal-500 bg-clip-text text-transparent">
-              Frontend Developer
-            </span>
-          </h2>
-          
-          <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8 leading-relaxed">
-            Computer Science student at Lagos State University with a passion for building elegant, user-centric web applications. Specializing in modern frontend technologies and actively expanding my expertise in the MERN stack while leveraging AI tools to optimize development workflows and deliver exceptional digital experiences.
-          </p>
-
-          <div className="flex gap-4 justify-center flex-wrap mb-12">
-            <button className="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300 flex items-center gap-2 group">
-              View Projects
-              <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-            </button>
-            <a href="/Mishael_Balogun_CV.pdf" download>
-  <button className="px-8 py-4 border border-white/20 rounded-full font-semibold hover:bg-white/5 transition-all duration-300">
-    Download CV
-  </button>
-</a>
-
-          </div>
-
-          {/* Social Links */}
-          <div className="flex gap-6 justify-center">
-            <a href="#" className="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center hover:border-purple-500 hover:bg-purple-500/10 transition-all">
-              <Github size={20} />
-            </a>
-            <a href="#" className="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center hover:border-blue-500 hover:bg-blue-500/10 transition-all">
-              <Linkedin size={20} />
-            </a>
-            <a href="#" className="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center hover:border-green-500 hover:bg-green-500/10 transition-all">
-              <Mail size={20} />
-            </a>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown className="text-gray-500" size={32} />
+      <section id="projects" style={{background: 'var(--paper)'}}>
+        <div className="section-label">Selected Work</div>
+        <h2>Things I've Built</h2>
+        <div className="projects-grid">
+          {projects.map((p, i) => (
+            <div className={`project-card ${p.featured ? 'featured' : ''} fade-up`} style={{transitionDelay:`${0.1 + i * 0.05}s`}} key={i}>
+              <div className="project-icon">{p.icon}</div>
+              <div className="project-name">{p.name}</div>
+              <p className="project-desc">{p.desc}</p>
+              <div className="project-tags">
+                {p.tags.map((t, j) => <span className="project-tag" key={j}>{t}</span>)}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-32 bg-gradient-to-b from-black to-gray-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center">
-            About <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">Me</span>
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="relative w-full h-96 bg-gradient-to-br from-purple-600/20 to-blue-600/20 rounded-2xl overflow-hidden border border-white/10">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-48 h-48 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full opacity-50 blur-3xl"></div>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center text-8xl font-bold text-white/10">
-                  MB
-                </div>
+      <section id="about" style={{background: 'var(--card-bg)', borderTop: '1px solid var(--line)'}}>
+        <div className="section-label">About</div>
+        <div className="about-grid">
+          <div className="fade-up">
+            <h2 style={{marginBottom:'1.5rem'}}>Building at the<br/>intersection of<br/>design & code</h2>
+            <p className="about-text">
+              I'm <strong>Mishael Balogun Omokaphe</strong>, a frontend developer and product builder based in <strong>Lagos, Nigeria</strong>. I specialise in turning ideas into real, shippable products — from consumer apps to blockchain infrastructure.
+            </p>
+            <br/>
+            <p className="about-text">
+              I care deeply about the craft: <strong>clean code, fast interfaces, and experiences that feel good to use.</strong> I've worked with early-stage startups in remote-first environments, which means I ship fast, communicate clearly, and take ownership.
+            </p>
+            <br/>
+            <p className="about-text">
+              When I'm not building, I'm studying — completing my <strong>B.Sc. Computer Science</strong> at Lagos State University while actively pushing projects to production.
+            </p>
+            <div className="about-edu" style={{marginTop:'2rem'}}>
+              <div className="edu-title">B.Sc. Computer Science</div>
+              <div className="edu-sub">Lagos State University (LASU) · Epe Campus · Expected 2026</div>
+            </div>
+          </div>
+          <div className="fade-up" style={{transitionDelay:'0.15s'}}>
+            <div className="skill-group">
+              <div className="skill-group-label">Frontend</div>
+              <div className="skill-pills">
+                {skills.frontend.map((s, i) => <span className="skill-pill" key={i}>{s}</span>)}
               </div>
             </div>
-
-            <div className="space-y-6">
-              <h3 className="text-3xl font-bold mb-4">Driven by Innovation & Growth</h3>
-              <p className="text-gray-400 text-lg leading-relaxed">
-                I'm Mishael Balogun, a frontend developer and Computer Science student at Lagos State University, where I've been pursuing my degree part-time since 2021. My journey in tech is fueled by a genuine passion for creating intuitive, visually striking web experiences that solve real-world problems.
-              </p>
-              <p className="text-gray-400 text-lg leading-relaxed">
-                With strong foundations in HTML, CSS, and JavaScript, I specialize in modern frameworks like React.js and Tailwind CSS. I'm currently expanding my skill set into the full MERN stack, embracing Node.js and MongoDB to become a well-rounded full-stack developer.
-              </p>
-              <p className="text-gray-400 text-lg leading-relaxed">
-                I leverage AI tools strategically to enhance my productivity, streamline workflows, and tackle complex challenges efficiently. As the founder of Zunto, an e-commerce marketplace currently in development, I'm not just coding—I'm building solutions that can scale and make an impact.
-              </p>
-              <p className="text-gray-400 text-lg leading-relaxed">
-                I'm eager to collaborate with experienced engineers and join teams where I can contribute meaningfully while continuing to learn and grow. My goal is to work on projects that challenge me and allow me to refine my craft alongside industry professionals.
-              </p>
-
-              <div className="pt-6">
-                <h4 className="text-xl font-semibold mb-4">Experience</h4>
-                {experiences.map((exp, idx) => (
-                  <div key={idx} className="mb-6 pb-6 border-b border-white/10 last:border-0">
-                    <div className="flex justify-between items-start mb-2">
-                      <h5 className="text-lg font-semibold text-purple-400">{exp.title}</h5>
-                      <span className="text-sm text-gray-500">{exp.period}</span>
-                    </div>
-                    <p className="text-gray-500 mb-2">{exp.organization}</p>
-                    <p className="text-gray-400">{exp.description}</p>
-                  </div>
-                ))}
+            <div className="skill-group">
+              <div className="skill-group-label">APIs & Integration</div>
+              <div className="skill-pills">
+                {skills.api.map((s, i) => <span className="skill-pill" key={i}>{s}</span>)}
+              </div>
+            </div>
+            <div className="skill-group">
+              <div className="skill-group-label">Tools & Workflow</div>
+              <div className="skill-pills">
+                {skills.tools.map((s, i) => <span className="skill-pill" key={i}>{s}</span>)}
+              </div>
+            </div>
+            <div className="skill-group">
+              <div className="skill-group-label">Design</div>
+              <div className="skill-pills">
+                {skills.design.map((s, i) => <span className="skill-pill" key={i}>{s}</span>)}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="py-32 bg-black">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center">
-            Technical <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">Skills</span>
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            {skills.map((skill, idx) => (
-              <div key={idx} className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-purple-500/50 transition-all">
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center gap-3">
-                    <skill.icon className="text-purple-400" size={24} />
-                    <span className="text-xl font-semibold">{skill.name}</span>
-                  </div>
-                  <span className="text-purple-400 font-semibold">{skill.level}%</span>
-                </div>
-                <div className="w-full bg-white/10 rounded-full h-3 overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-purple-600 to-blue-600 rounded-full transition-all duration-1000"
-                    style={{ width: `${skill.level}%` }}
-                  ></div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="bg-gradient-to-br from-purple-600/10 to-blue-600/10 rounded-2xl p-8 border border-purple-500/20">
-            <h3 className="text-2xl font-bold mb-4 flex items-center gap-3">
-              <Users className="text-purple-400" />
-              What I Bring to Your Team
-            </h3>
-            <div className="grid md:grid-cols-3 gap-6 mt-6">
-              <div className="space-y-2">
-                <h4 className="font-semibold text-purple-400">Clean Code Advocate</h4>
-                <p className="text-gray-400">Writing maintainable, scalable, and well-documented code that teams can easily understand and build upon</p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="font-semibold text-blue-400">Fast Learner</h4>
-                <p className="text-gray-400">Quickly adapting to new technologies, frameworks, and team workflows while contributing value from day one</p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="font-semibold text-teal-400">AI-Enhanced Workflow</h4>
-                <p className="text-gray-400">Leveraging AI tools strategically to boost productivity, solve complex problems, and deliver quality work efficiently</p>
-              </div>
+      <section className="contact" id="contact">
+        <div className="contact-inner">
+          <div className="fade-up">
+            <div className="section-label">Contact</div>
+            <h2>Let's Build<br/>Something<br/>Together</h2>
+            <p className="contact-sub">
+              Open to frontend engineering roles, freelance contracts, and interesting product collaborations. Remote-first, global-ready.
+            </p>
+            <div className="contact-links">
+              <a href="mailto:mishaelbalogun@gmail.com" className="contact-link">
+                <div className="contact-icon">✉️</div>
+                mishaelbalogun@gmail.com
+              </a>
+              <a href="https://github.com/" className="contact-link" target="_blank" rel="noopener noreferrer">
+                <div className="contact-icon">⌥</div>
+                github.com/mishael
+              </a>
+              <a href="https://linkedin.com/" className="contact-link" target="_blank" rel="noopener noreferrer">
+                <div className="contact-icon">in</div>
+                linkedin.com/in/mishael-balogun
+              </a>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section id="work" className="py-32 bg-gradient-to-b from-black to-gray-900">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center">
-            Featured <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">Projects</span>
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, idx) => (
-              <div 
-                key={project.id}
-                className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2"
-              >
-                <div className={`h-48 bg-gradient-to-br ${project.gradient} opacity-80 group-hover:opacity-100 transition-opacity`}>
-                  <div className="h-full flex items-center justify-center">
-                    <div className="text-6xl font-bold text-white/20">{String(idx + 1).padStart(2, '0')}</div>
-                  </div>
-                </div>
-                
-                <div className="p-6">
-                  {project.status && (
-                    <span className="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs rounded-full mb-3">
-                      {project.status}
-                    </span>
-                  )}
-                  {project.role && (
-                    <span className="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs rounded-full mb-3 ml-2">
-                      {project.role}
-                    </span>
-                  )}
-                  <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-purple-400 text-sm mb-3">{project.category}</p>
-                  <p className="text-gray-400 mb-4 line-clamp-3">{project.description}</p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag, i) => (
-                      <span key={i} className="px-3 py-1 bg-white/5 rounded-full text-xs text-gray-300">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <button className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors group/btn">
-                    View Details
-                    <ExternalLink size={16} className="group-hover/btn:translate-x-1 transition-transform" />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-32 bg-black">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-5xl md:text-6xl font-bold mb-8">
-            Let's Build <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">Together</span>
-          </h2>
-          <p className="text-xl text-gray-400 mb-12">
-            I'm actively seeking opportunities to join talented teams and contribute to exciting projects. Whether you're looking for a dedicated frontend developer or a collaborator on innovative ideas, let's connect.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <a href="mailto:balogunmishael7@gmail.com" className="bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl p-6 transition-all">
-              <Mail className="mx-auto mb-4 text-purple-400" size={32} />
-              <h3 className="font-semibold mb-2">Email</h3>
-              <p className="text-gray-400 text-sm">balogunmishael7@gmail.com</p>
-            </a>
-            <a href="https://github.com/program-is-a-must" className="bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl p-6 transition-all">
-              <Github className="mx-auto mb-4 text-purple-400" size={32} />
-              <h3 className="font-semibold mb-2">GitHub</h3>
-              <p className="text-gray-400 text-sm">Mishael Balogun</p>
-            </a>
-            <a href="#" className="bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl p-6 transition-all">
-              <Linkedin className="mx-auto mb-4 text-purple-400" size={32} />
-              <h3 className="font-semibold mb-2">LinkedIn</h3>
-              <p className="text-gray-400 text-sm">Mishael Balogun</p>
+          <div className="contact-right fade-up" style={{transitionDelay:'0.15s'}}>
+            <div className="availability-card">
+              <div className="availability-status"><span className="availability-dot"></span>Available for Work</div>
+              <p className="availability-text">Currently open to full-time remote positions and freelance frontend engineering contracts. Quick to onboard, async-friendly.</p>
+            </div>
+            <a href="/Mishael_Balogun_CV.pdf" className="btn btn-primary" style={{width:'100%', justifyContent:'center', borderRadius:'12px', padding:'18px', fontSize:'14px'}} download>
+              Download Full CV (PDF)
             </a>
           </div>
-
-          <button className="px-12 py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-semibold text-lg hover:shadow-lg hover:shadow-purple-500/50 transition-all duration-300">
-            Get In Touch
-          </button>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 text-center text-gray-500">
-          <p>© 2025 Mishael Balogun Learning From InspireMe Media Network. Crafted with React & Tailwind CSS</p>
-        </div>
+      <footer>
+        <span className="footer-copy">© 2025 Mishael Balogun Omokaphe. Built with care in Lagos.</span>
+        <a href="#home" className="footer-back-top">Back to top ↑</a>
       </footer>
-    </div>
+    </>
   );
-};
+}
 
-export default PremiumPortfolio;
+export default App;
