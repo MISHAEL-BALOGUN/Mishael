@@ -2,41 +2,41 @@ import React, { useEffect } from 'react';
 
 const projects = [
   {
-    icon: '🛒',
-    name: 'Lilyshop',
-    desc: 'TikTok-style food ordering app where users scroll a vertical feed and order meals in-feed — zero friction from discovery to checkout.',
-    tags: ['React.js', 'Tailwind CSS', 'REST API', 'Mobile-first'],
+    icon: '🌐',
+    name: 'Zunto Marketplace',
+    desc: 'Building a full-scale e-commerce marketplace connecting buyers and sellers with seamless transactions and modern UI.',
+    tags: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS'],
     featured: true
-  },
-  {
-    icon: '🎓',
-    name: 'SabiPass',
-    desc: 'AI-powered education platform for Nigerian students — JAMB, WAEC, Post-UTME prep with an intelligent study assistant.',
-    tags: ['React', 'AI Integration', 'Supabase']
   },
   {
     icon: '📸',
     name: 'Photographer Booking Platform',
-    desc: 'End-to-end booking platform — full UX design through backend integration, enabling photographers to list, book, and manage sessions.',
-    tags: ['React', 'UX Design', 'REST API']
+    desc: 'Intuitive booking system for photographers with portfolio showcase, scheduling, and payment integration.',
+    tags: ['React.js', 'JavaScript', 'Tailwind CSS', 'API Integration']
   },
   {
-    icon: '🌐',
-    name: 'Zunto',
-    desc: 'Global marketplace — architecture design and product strategy for a cross-border commerce platform built for scale.',
-    tags: ['Product Design', 'Architecture', 'React']
+    icon: '🏦',
+    name: 'Online Banking Demo',
+    desc: 'Modern banking interface demonstrating secure transactions, account management, and financial analytics.',
+    tags: ['React', 'JavaScript', 'CSS3', 'Responsive Design']
   },
   {
-    icon: '⛓️',
-    name: 'Balcoin',
-    desc: 'Custom Layer-1 Proof-of-Work blockchain — built from first principles, including consensus mechanism, transaction validation, and chain state.',
-    tags: ['Blockchain', 'PoW', 'JavaScript']
+    icon: '👗',
+    name: 'Fashion Store',
+    desc: 'Elegant fashion e-commerce platform with advanced filtering, wishlist features, and smooth checkout experience.',
+    tags: ['React.js', 'Tailwind CSS', 'JavaScript', 'UI/UX']
   },
   {
-    icon: '🪙',
-    name: '$BINGO',
-    desc: 'Solana memecoin with a native Telegram Web App integration — enabling in-chat token interaction and community engagement at launch.',
-    tags: ['Solana', 'Telegram TWA', 'Web3']
+    icon: '🎨',
+    name: 'Digital Agency Website',
+    desc: 'Professional agency website showcasing services, portfolio, and client testimonials with modern aesthetics.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive']
+  },
+  {
+    icon: '⚽',
+    name: 'Online Sports Store',
+    desc: 'Dynamic sports equipment store with product catalogs, shopping cart, and seamless user experience.',
+    tags: ['React', 'Tailwind CSS', 'JavaScript', 'E-Commerce']
   }
 ];
 
