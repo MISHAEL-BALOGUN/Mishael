@@ -133,7 +133,7 @@ function App() {
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="href="/cv.pdf"" className="btn btn-primary" style={{fontSize:'12px', padding:'10px 20px'}} target="_blank">Download CV</a>
+        <a href="/cv.pdf" className="btn btn-primary" style={{fontSize:'12px', padding:'10px 20px'}} download="Mishael-Balogun-CV.pdf">Download CV</a>
       </nav>
 
       <section className="hero" id="home" style={{paddingTop:'80px', paddingBottom:'0'}}>
@@ -286,11 +286,11 @@ function App() {
                 <div className="contact-icon">✉️</div>
                 mishaelbalogun@gmail.com
               </a>
-              <a href="https://github.com/" className="contact-link" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/" className="contact-link" download="Mishael-Balogun-CV.pdf" rel="noopener noreferrer">
                 <div className="contact-icon">⌥</div>
                 github.com/mishael
               </a>
-              <a href="https://linkedin.com/" className="contact-link" target="_blank" rel="noopener noreferrer">
+              <a href="https://linkedin.com/" className="contact-link" download="Mishael-Balogun-CV.pdf" rel="noopener noreferrer">
                 <div className="contact-icon">in</div>
                 linkedin.com/in/mishael-balogun
               </a>
@@ -301,7 +301,7 @@ function App() {
               <div className="availability-status"><span className="availability-dot"></span>Available for Work</div>
               <p className="availability-text">Currently open to full-time remote positions and freelance frontend engineering contracts. Quick to onboard, async-friendly.</p>
             </div>
-            <a href="href="/cv.pdf"" className="btn btn-primary" style={{width:'100%', justifyContent:'center', borderRadius:'12px', padding:'18px', fontSize:'14px'}} target="_blank">
+            <a href="/cv.pdf" className="btn btn-primary" style={{width:'100%', justifyContent:'center', borderRadius:'12px', padding:'18px', fontSize:'14px'}} download="Mishael-Balogun-CV.pdf">
               Download Full CV (PDF)
             </a>
           </div>
