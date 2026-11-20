@@ -1,42 +1,110 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const projects = [
   {
     icon: '🌐',
     name: 'Zunto Marketplace',
-    desc: 'Building a full-scale e-commerce marketplace connecting buyers and sellers with seamless transactions and modern UI.',
+    desc: 'Building a full-scale e-commerce marketplace connecting buyers and sellers with seamless transactions and a modern, conversion-focused UI.',
     tags: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS'],
-    featured: true
+    category: 'E-commerce',
+    featured: true,
+    link: null
+  },
+  {
+    icon: '🛍️',
+    name: 'Lilyshop',
+    desc: 'TikTok-style social commerce platform for Nigerian creators, turning scrollable video discovery into seamless in-feed purchases.',
+    tags: ['React', 'Social Commerce', 'Video UI', 'Responsive'],
+    category: 'Social',
+    link: 'https://lilyshops.com'
+  },
+  {
+    icon: '💬',
+    name: 'GoChat',
+    desc: 'Social networking and chat platform inspired by 2go, featuring chat rooms, private messaging, GC virtual currency, levels, and badges.',
+    tags: ['React', 'Real-time Chat', 'Social', 'Community'],
+    category: 'Social',
+    link: 'https://gochatus.com'
+  },
+  {
+    icon: '🎥',
+    name: 'Cenntre',
+    desc: 'Monetization infrastructure for the creator economy, helping creators manage and grow live social experiences and audience engagement.',
+    tags: ['Creator Economy', 'Live Social', 'Platform', 'Web App'],
+    category: 'Social',
+    link: 'https://cenntre.com'
+  },
+  {
+    icon: '🛒',
+    name: 'UprightMarket',
+    desc: 'Nigerian e-commerce marketplace with live-streaming selling, designed to connect merchants and shoppers in real time.',
+    tags: ['E-commerce', 'Live Commerce', 'Marketplace', 'Nigeria'],
+    category: 'E-commerce',
+    link: 'https://uprightmarket.ng'
+  },
+  {
+    icon: '⚽',
+    name: 'KitKicks',
+    desc: 'Football jerseys and boots store with a product catalog, cart, and checkout flow for fans and players.',
+    tags: ['Next.js', 'E-commerce', 'Cart & Checkout', 'Responsive UI'],
+    category: 'E-commerce',
+    link: 'https://kitkicks1.vercel.app'
+  },
+  {
+    icon: '📊',
+    name: 'Edusignal',
+    desc: 'AI-powered K-12 district intelligence platform for EdTech sales teams, consolidating data across 15,000+ districts with prospecting, fit scoring, and call-prep tools.',
+    tags: ['Next.js', 'AI', 'Data Analytics', 'SaaS'],
+    category: 'Web',
+    link: 'https://edusignal.vercel.app'
+  },
+  {
+    icon: '💼',
+    name: 'Darhmi Wager',
+    desc: 'Smart wage calculator (WagePro) for tracking earnings with hourly rates, overtime, bonuses, tax deductions, and saved calculation history.',
+    tags: ['React', 'JavaScript', 'Productivity', 'Local Storage'],
+    category: 'Web',
+    link: 'https://darhmi-wager.vercel.app'
   },
   {
     icon: '📸',
     name: 'Photographer Booking Platform',
     desc: 'Intuitive booking system for photographers with portfolio showcase, scheduling, and payment integration.',
-    tags: ['React.js', 'JavaScript', 'Tailwind CSS', 'API Integration']
+    tags: ['React.js', 'JavaScript', 'Tailwind CSS', 'API Integration'],
+    category: 'Web',
+    link: null
   },
   {
     icon: '🏦',
     name: 'Online Banking Demo',
     desc: 'Modern banking interface demonstrating secure transactions, account management, and financial analytics.',
-    tags: ['React', 'JavaScript', 'CSS3', 'Responsive Design']
+    tags: ['React', 'JavaScript', 'CSS3', 'Responsive Design'],
+    category: 'Web',
+    link: null
   },
   {
     icon: '👗',
     name: 'Fashion Store',
     desc: 'Elegant fashion e-commerce platform with advanced filtering, wishlist features, and smooth checkout experience.',
-    tags: ['React.js', 'Tailwind CSS', 'JavaScript', 'UI/UX']
+    tags: ['React.js', 'Tailwind CSS', 'JavaScript', 'UI/UX'],
+    category: 'E-commerce',
+    link: null
   },
   {
     icon: '🎨',
     name: 'Digital Agency Website',
     desc: 'Professional agency website showcasing services, portfolio, and client testimonials with modern aesthetics.',
-    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive']
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
+    category: 'Web',
+    link: null
   },
   {
-    icon: '⚽',
+    icon: '🏟️',
     name: 'Online Sports Store',
     desc: 'Dynamic sports equipment store with product catalogs, shopping cart, and seamless user experience.',
-    tags: ['React', 'Tailwind CSS', 'JavaScript', 'E-Commerce']
+    tags: ['React', 'Tailwind CSS', 'JavaScript', 'E-Commerce'],
+    category: 'E-commerce',
+    link: null
   }
 ];
 
@@ -89,20 +157,24 @@ const skills = {
 };
 
 function App() {
+  const [showAllProjects, setShowAllProjects] = useState(false);
+
   useEffect(() => {
     const cursor = document.getElementById('cursor');
-    if (!cursor) return;
-    
+
     const handleMouseMove = (e) => {
+      if (!cursor) return;
       cursor.style.left = e.clientX + 'px';
       cursor.style.top = e.clientY + 'px';
     };
 
-    const handleMouseEnter = () => cursor.classList.add('expand');
-    const handleMouseLeave = () => cursor.classList.remove('expand');
+    const handleMouseEnter = () => cursor?.classList.add('expand');
+    const handleMouseLeave = () => cursor?.classList.remove('expand');
 
     document.addEventListener('mousemove', handleMouseMove);
-    document.querySelectorAll('a, button, .skill-pill, .project-card').forEach(el => {
+
+    const interactiveEls = document.querySelectorAll('a, button, .skill-pill, .project-card');
+    interactiveEls.forEach((el) => {
       el.addEventListener('mouseenter', handleMouseEnter);
       el.addEventListener('mouseleave', handleMouseLeave);
     });
@@ -114,12 +186,19 @@ function App() {
         }
       });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+    document.querySelectorAll('.fade-up').forEach((el) => obs.observe(el));
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
+      interactiveEls.forEach((el) => {
+        el.removeEventListener('mouseenter', handleMouseEnter);
+        el.removeEventListener('mouseleave', handleMouseLeave);
+      });
+      obs.disconnect();
     };
-  }, []);
+  }, [showAllProjects]);
+
+  const visibleProjects = showAllProjects ? projects : projects.slice(0, 9);
 
   return (
     <>
@@ -142,7 +221,7 @@ function App() {
           <h1>
             Frontend<br/>
             <span className="accent-text">Engineer</span><br/>
-            & Builder
+            &amp; Builder
           </h1>
           <p className="hero-sub">
             I build products people actually use — from TikTok-style food apps to blockchain implementations. Based in Lagos, Nigeria, shipping remotely for the world.
@@ -187,7 +266,7 @@ function App() {
 
       <section className="work" id="work">
         <div className="section-label">Experience</div>
-        <h2>Where I've Worked</h2>
+        <h2>Where I&apos;ve Worked</h2>
         <div className="exp-list">
           {experiences.map((exp, i) => (
             <div className="exp-item fade-up" key={i}>
@@ -208,36 +287,59 @@ function App() {
 
       <section id="projects" style={{background: 'var(--paper)'}}>
         <div className="section-label">Selected Work</div>
-        <h2>Things I've Built</h2>
+        <h2>Things I&apos;ve Built</h2>
         <div className="projects-grid">
-          {projects.map((p, i) => (
-            <div className={`project-card ${p.featured ? 'featured' : ''} fade-up`} style={{transitionDelay:`${0.1 + i * 0.05}s`}} key={i}>
+          {visibleProjects.map((p, i) => (
+            <div className={`project-card ${p.featured ? 'featured' : ''} fade-up`} style={{transitionDelay:`${0.05 + i * 0.04}s`}} key={p.name}>
               <div className="project-icon">{p.icon}</div>
               <div className="project-name">{p.name}</div>
               <p className="project-desc">{p.desc}</p>
               <div className="project-tags">
-                {p.tags.map((t, j) => <span className="project-tag" key={j}>{t}</span>)}
+                {p.tags.map((t) => <span className="project-tag" key={t}>{t}</span>)}
               </div>
+              {p.link && (
+                <a
+                  href={p.link}
+                  className="project-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit live site for ${p.name}`}
+                >
+                  Live site <span aria-hidden="true">↗</span>
+                </a>
+              )}
             </div>
           ))}
         </div>
+        {projects.length > 9 && (
+          <div className="projects-actions fade-up">
+            <button
+              type="button"
+              className="btn btn-outline"
+              onClick={() => setShowAllProjects((v) => !v)}
+              aria-expanded={showAllProjects}
+            >
+              {showAllProjects ? 'Show less' : `Show more (${projects.length - 9})`}
+            </button>
+          </div>
+        )}
       </section>
 
       <section id="about" style={{background: 'var(--card-bg)', borderTop: '1px solid var(--line)'}}>
         <div className="section-label">About</div>
         <div className="about-grid">
           <div className="fade-up">
-            <h2 style={{marginBottom:'1.5rem'}}>Building at the<br/>intersection of<br/>design & code</h2>
+            <h2 style={{marginBottom:'1.5rem'}}>Building at the<br/>intersection of<br/>design &amp; code</h2>
             <p className="about-text">
-              I'm <strong>Mishael Balogun Omokaphe</strong>, a frontend developer and product builder based in <strong>Lagos, Nigeria</strong>. I specialise in turning ideas into real, shippable products — from consumer apps to blockchain infrastructure.
+              I&apos;m <strong>Mishael Balogun Omokaphe</strong>, a frontend developer and product builder based in <strong>Lagos, Nigeria</strong>. I specialise in turning ideas into real, shippable products — from consumer apps to blockchain infrastructure.
             </p>
             <br/>
             <p className="about-text">
-              I care deeply about the craft: <strong>clean code, fast interfaces, and experiences that feel good to use.</strong> I've worked with early-stage startups in remote-first environments, which means I ship fast, communicate clearly, and take ownership.
+              I care deeply about the craft: <strong>clean code, fast interfaces, and experiences that feel good to use.</strong> I&apos;ve worked with early-stage startups in remote-first environments, which means I ship fast, communicate clearly, and take ownership.
             </p>
             <br/>
             <p className="about-text">
-              When I'm not building, I'm studying — completing my <strong>B.Sc. Computer Science</strong> at Lagos State University while actively pushing projects to production.
+              When I&apos;m not building, I&apos;m studying — completing my <strong>B.Sc. Computer Science</strong> at Lagos State University while actively pushing projects to production.
             </p>
             <div className="about-edu" style={{marginTop:'2rem'}}>
               <div className="edu-title">B.Sc. Computer Science</div>
@@ -248,25 +350,25 @@ function App() {
             <div className="skill-group">
               <div className="skill-group-label">Frontend</div>
               <div className="skill-pills">
-                {skills.frontend.map((s, i) => <span className="skill-pill" key={i}>{s}</span>)}
+                {skills.frontend.map((s) => <span className="skill-pill" key={s}>{s}</span>)}
               </div>
             </div>
             <div className="skill-group">
-              <div className="skill-group-label">APIs & Integration</div>
+              <div className="skill-group-label">APIs &amp; Integration</div>
               <div className="skill-pills">
-                {skills.api.map((s, i) => <span className="skill-pill" key={i}>{s}</span>)}
+                {skills.api.map((s) => <span className="skill-pill" key={s}>{s}</span>)}
               </div>
             </div>
             <div className="skill-group">
-              <div className="skill-group-label">Tools & Workflow</div>
+              <div className="skill-group-label">Tools &amp; Workflow</div>
               <div className="skill-pills">
-                {skills.tools.map((s, i) => <span className="skill-pill" key={i}>{s}</span>)}
+                {skills.tools.map((s) => <span className="skill-pill" key={s}>{s}</span>)}
               </div>
             </div>
             <div className="skill-group">
               <div className="skill-group-label">Design</div>
               <div className="skill-pills">
-                {skills.design.map((s, i) => <span className="skill-pill" key={i}>{s}</span>)}
+                {skills.design.map((s) => <span className="skill-pill" key={s}>{s}</span>)}
               </div>
             </div>
           </div>
@@ -277,7 +379,7 @@ function App() {
         <div className="contact-inner">
           <div className="fade-up">
             <div className="section-label">Contact</div>
-            <h2>Let's Build<br/>Something<br/>Together</h2>
+            <h2>Let&apos;s Build<br/>Something<br/>Together</h2>
             <p className="contact-sub">
               Open to frontend engineering roles, freelance contracts, and interesting product collaborations. Remote-first, global-ready.
             </p>
@@ -286,13 +388,14 @@ function App() {
                 <div className="contact-icon">✉️</div>
                 mishaelbalogun@gmail.com
               </a>
-              <a href="https://github.com/" className="contact-link" download="Mishael-Balogun-CV.pdf" rel="noopener noreferrer">
+              <a href="https://github.com/MISHAEL-BALOGUN" className="contact-link" target="_blank" rel="noopener noreferrer">
                 <div className="contact-icon">⌥</div>
-                github.com/mishael
+                github.com/MISHAEL-BALOGUN
               </a>
-              <a href="https://linkedin.com/" className="contact-link" download="Mishael-Balogun-CV.pdf" rel="noopener noreferrer">
+              {/* TODO: Replace with real LinkedIn profile URL */}
+              <a href="https://www.linkedin.com" className="contact-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (TODO: update URL)">
                 <div className="contact-icon">in</div>
-                linkedin.com/in/mishael-balogun
+                LinkedIn (profile URL needed)
               </a>
             </div>
           </div>

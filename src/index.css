@@ -389,6 +389,39 @@ h2 {
   padding: 4px 10px;
   border-radius: 100px;
 }
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 1.2rem;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 100px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  width: fit-content;
+  transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.project-link:hover {
+  transform: translateY(-1px);
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+.project-link:focus-visible {
+  outline: 2px solid var(--accent-dim);
+  outline-offset: 2px;
+}
+.projects-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
 .project-card.featured {
   background: var(--ink);
   border-color: var(--ink);
@@ -399,6 +432,17 @@ h2 {
 .project-card.featured .project-icon { background: rgba(255,255,255,0.08); }
 .project-card.featured .project-tag { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); }
 .project-card.featured::before { background: var(--accent); }
+.project-card.featured .project-link {
+  background: rgba(255,255,255,0.08);
+  color: var(--paper);
+  border-color: rgba(255,255,255,0.18);
+}
+.project-card.featured .project-link:hover {
+  background: var(--accent);
+  color: var(--ink);
+  border-color: var(--accent);
+  box-shadow: none;
+}
 
 .about-grid {
   display: grid;
@@ -566,6 +610,29 @@ footer {
 .fade-up.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible,
+.contact-link:focus-visible,
+.nav-links a:focus-visible {
+  outline: 2px solid var(--accent-dim);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .fade-up {
+    opacity: 1;
+    transform: none;
+  }
+  .cursor { display: none; }
 }
 
 @media (max-width: 900px) {
