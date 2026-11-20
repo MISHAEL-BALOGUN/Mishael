@@ -384,18 +384,17 @@ function App() {
               Open to frontend engineering roles, freelance contracts, and interesting product collaborations. Remote-first, global-ready.
             </p>
             <div className="contact-links">
-              <a href="mailto:mishaelbalogun@gmail.com" className="contact-link">
+              <a href="mailto:balogunmishael7@gmail.com" className="contact-link">
                 <div className="contact-icon">✉️</div>
-                mishaelbalogun@gmail.com
+                balogunmishael7@gmail.com
               </a>
               <a href="https://github.com/MISHAEL-BALOGUN" className="contact-link" target="_blank" rel="noopener noreferrer">
                 <div className="contact-icon">⌥</div>
                 github.com/MISHAEL-BALOGUN
               </a>
-              {/* TODO: Replace with real LinkedIn profile URL */}
-              <a href="https://www.linkedin.com" className="contact-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (TODO: update URL)">
+              <a href="https://www.linkedin.com/in/mishael-balogun-366274410" className="contact-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
                 <div className="contact-icon">in</div>
-                LinkedIn (profile URL needed)
+                linkedin.com/in/mishael-balogun-366274410
               </a>
             </div>
           </div>
