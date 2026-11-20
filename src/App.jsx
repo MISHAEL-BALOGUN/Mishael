@@ -212,7 +212,7 @@ function App() {
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="/cv.pdf" className="btn btn-primary" style={{fontSize:'12px', padding:'10px 20px'}} download="Mishael-Balogun-CV.pdf">Download CV</a>
+        <a href="/balogun-mishael-portfolio.docx" className="btn btn-primary" style={{fontSize:'12px', padding:'10px 20px'}} download="balogun-mishael-portfolio.docx">Download CV (DOCX)</a>
       </nav>
 
       <section className="hero" id="home" style={{paddingTop:'80px', paddingBottom:'0'}}>
@@ -403,8 +403,8 @@ function App() {
               <div className="availability-status"><span className="availability-dot"></span>Available for Work</div>
               <p className="availability-text">Currently open to full-time remote positions and freelance frontend engineering contracts. Quick to onboard, async-friendly.</p>
             </div>
-            <a href="/cv.pdf" className="btn btn-primary" style={{width:'100%', justifyContent:'center', borderRadius:'12px', padding:'18px', fontSize:'14px'}} download="Mishael-Balogun-CV.pdf">
-              Download Full CV (PDF)
+            <a href="/balogun-mishael-portfolio.docx" className="btn btn-primary" style={{width:'100%', justifyContent:'center', borderRadius:'12px', padding:'18px', fontSize:'14px'}} download="balogun-mishael-portfolio.docx">
+              Download Full CV (DOCX)
             </a>
           </div>
         </div>
